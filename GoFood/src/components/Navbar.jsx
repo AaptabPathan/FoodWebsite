@@ -1,28 +1,51 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-    <div class="container-fluid">
-    <Link class="navbar-brand fs-2 fw-bold fst-italic" to="/">GoFood</Link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <Link class="nav-link mt-1 fs-5 active" aria-current="page" to="/">Home</Link>
-        </li>
-        <li class="nav-item">
-          <Link class="nav-link mt-1 fs-5" to="/login">Login</Link>
-        </li>
-      </ul>
+        <div class="container-fluid">
+          <Link class="navbar-brand fs-2 fw-bold fst-italic" to="/">
+            GoFood
+          </Link>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <Link
+                  class="nav-link mt-1 fs-5 active"
+                  aria-current="page"
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link mt-1 fs-5" to="/login">
+                  Login
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link mt-1 fs-5" to="/createuser">
+                  Signup
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
-  </div>
-</nav>
-    </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
