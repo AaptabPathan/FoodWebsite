@@ -1,6 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-success">
@@ -20,7 +27,7 @@ function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav me-auto">
               <li className="nav-item">
                 <Link
                   className="nav-link mt-1 fs-5 active"
@@ -30,17 +37,52 @@ function Navbar() {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link mt-1 fs-5" to="/login">
+
+              {localStorage.getItem("authToken") ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link mt-1 fs-5 active"
+                    aria-current="page"
+                    to="/"
+                  >
+                    My Orders
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
+            </ul>
+
+            {!localStorage.getItem("authToken") ? (
+              <div className="d-flex">
+                <Link
+                  className="btn bg-light text-success mt-1 fs-6 mx-1"
+                  to="/login"
+                >
                   Login
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link mt-1 fs-5" to="/createuser">
+
+                <Link
+                  className="btn bg-light text-success mt-1 fs-6 mx-1"
+                  to="/createuser"
+                >
                   Signup
                 </Link>
-              </li>
-            </ul>
+              </div>
+            ) : (
+              <div>
+                <div className="btn bg-white text-success mx-2 fs-6">
+                  My Cart
+                </div>
+
+                <div
+                  className="btn bg-white text-danger mx-2 fs-6"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </nav>
