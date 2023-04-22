@@ -1,23 +1,33 @@
 import React from "react";
 
-function Card() {
+function Card(props) {
+  let options = props.foodOptions;
+  let priceOptions = Object.keys(options);
+
   return (
     <div>
       <div
-        className="card bg-dark text-white border-light mt-4"
-        style={{ width: "18rem", maxHeight: "400px" }}
+        className="card bg-dark text-white  mt-4"
+        style={{
+          width: "17rem",
+          margin: "20px",
+          maxHeight: "430px",
+          boxShadow: "box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px",
+        }}
       >
         <img
-          src="https://img.freepik.com/free-photo/top-view-pepperoni-pizza-sliced-into-six-slices_141793-2157.jpg"
-          className="card-img-top"
+          src={props.foodImg}
+          className="card-img-top card-img"
+          style={{
+            objectFit: "cover !important",
+            objectPosition: "center",
+            overflow: "hidden",
+          }}
           alt="..."
         />
         <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+          <h5 className="card-title">{props.foodName}</h5>
+          <p className="card-text">{props.foodDesc}</p>
           <div className="container">
             <select className="bg-success m-3 text-white rounded" name="" id="">
               {Array.from(Array(6), (e, i) => {
@@ -28,11 +38,17 @@ function Card() {
                 );
               })}
             </select>
-            <select className="bg-success m-2 text-white rounded" name="" id="">
-              <option value="half">Half</option>
-              <option value="full">Full</option>
+            <select className="bg-success m-1 text-white rounded" name="" id="">
+              {priceOptions.map((data) => {
+                return (
+                  <option key={data} value={data}>
+                    {data}
+                  </option>
+                );
+              })}
             </select>
-            <div className="d-inline h-100 fs-5">Total Price</div>
+            <br />
+            <div className="d-inline h-100 fs-6">Total Price</div>
           </div>
         </div>
       </div>
