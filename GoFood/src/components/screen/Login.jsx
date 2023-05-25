@@ -23,8 +23,8 @@ function Login() {
        if(!json.success){
          alert('Enter valid cradentials');
        }else{
+          localStorage.setItem("userEmail", cradential.email);
           localStorage.setItem("authToken", json.authToken);
-          console.log(localStorage.getItem("authToken"));
           navigate('/');
        }
     }
@@ -49,7 +49,7 @@ function Login() {
             <input type="password" className="form-control" id="exampleInputPassword1" name='password' value={cradential.password} onChange={onChange} />
           </div>
 
-          <button type="submit" className="m-3 btn btn-success">Sign Up</button>
+          <button type="submit" className="m-3 btn btn-success">Log in</button>
           <Link to='/createuser' className='m-3 btn btn-danger'>I'm a new user</Link>
       </form>
     </div>

@@ -140,9 +140,10 @@ function Home() {
                             className="col-12 col-md-6 col-lg-3"
                           >
                             <Card
-                              foodName={filteredItem.name}
-                              foodDesc={filteredItem.description}
-                              foodImg={filteredItem.img}
+                              // foodName={filteredItem.name}
+                              // foodDesc={filteredItem.description}
+                              // foodImg={filteredItem.img}
+                              foodItems={filteredItem}
                               foodOptions={filteredItem.options[0]}
                             ></Card>
                           </div>

@@ -9,6 +9,8 @@ import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import Home from "./components/screen/Home";
 import Login from "./components/screen/Login";
 import Signup from "./components/screen/Signup";
+import { CartProvider } from "./components/ContextReducer";
+import MyOrder from "./components/screen/MyOrder";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,12 +26,20 @@ function App() {
       path: "/createuser",
       element: <Signup />,
     },
+    {
+      path: "/myOrder",
+      element: <MyOrder />,
+    },
+  
+  
   ]);
 
   return (
-    <div className="">
-      <RouterProvider router={router} />
-    </div>
+    <CartProvider>
+      <div className="">
+        <RouterProvider router={router} />
+      </div>
+    </CartProvider>
   );
 }
 

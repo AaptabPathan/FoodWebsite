@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Badge from "react-bootstrap/esm/Badge";
+
+import Modal from "../Modal";
+import Cart from "./screen/Cart";
+import { useCart } from "./ContextReducer";
 function Navbar() {
+  const data = useCart();
+  const [cartView, setCartView] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -8,7 +15,19 @@ function Navbar() {
     navigate("/login");
   };
 
+
+  const loadCart = () => {
+    setCartView(true)
+  }
+
+  const setCartFalse = () =>{
+    setCartView(false)
+  }
+
   return (
+
+ 
+
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-success">
         <div className="container-fluid">
@@ -43,7 +62,7 @@ function Navbar() {
                   <Link
                     className="nav-link mt-1 fs-5 active"
                     aria-current="page"
-                    to="/"
+                    to="/myOrder"
                   >
                     My Orders
                   </Link>
@@ -71,8 +90,12 @@ function Navbar() {
               </div>
             ) : (
               <div>
-                <div className="btn bg-white text-success mx-2 fs-6">
+                <div className="btn bg-white text-success mx-2 fs-6" onClick={loadCart}>
                   My Cart
+                  <Badge pill bg="danger" className="mx-1">
+                    {(data.length === 0)?"":(data.length)}
+                  </Badge>
+                  {cartView ? <Modal onClose={() => setCartView(setCartFalse)}><Cart></Cart></Modal> : ""}
                 </div>
 
                 <div
@@ -91,3 +114,4 @@ function Navbar() {
 }
 
 export default Navbar;
+
